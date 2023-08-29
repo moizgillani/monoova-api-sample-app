@@ -1,0 +1,54 @@
+{
+  "version": "1.0.0",
+  "license": "MIT",
+  "sideEffects": false,
+  "main": "dist/cjs/index.js",
+  "typings": "dist/types/index.d.ts",
+  "module": "dist/esm/index.js",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "engines": {
+    "node": ">=14.17.0"
+  },
+  "scripts": {
+    "build": "rm -rf dist & tsc -p tsconfig.esm.json & tsc -p tsconfig.cjs.json",
+    "test": "jest --coverage --passWithNoTests",
+    "lint": "eslint --ignore-path .eslintignore --ext .js,.ts .",
+    "prepare": "rm -rf dist & tsc -p tsconfig.esm.json & tsc -p tsconfig.cjs.json"
+  },
+  "prettier": {
+    "printWidth": 80,
+    "semi": true,
+    "singleQuote": true,
+    "trailingComma": "es5"
+  },
+  "name": "sdksio-monoova-sdk",
+  "description": "# Introduction <p>    Monoova has developed a powerful payments engine which allows you to receive, manage and pay funds in AUD in Australia automatically.   This service is made available to Monoova’s clients through a set of easy-to-use RESTful APIs with JSON payloads described in this document.   The central idea is to reduce the cost, risk and effort normally associated with managing complex money movements so that you can focus on growing your business. </p>  <p>   Our clients can receive and reconcile funds via Realtime transfers (NPP), direct credits/debits, BPAY and cards.   They can then manage those funds by building virtual account/wallet hierarchies to get bespoke reporting, reconciliation and much more.   And finally, our clients can pay funds via Realtime transfers (NPP) direct credits and BPAY.   As new technologies become available (e.g. NPP Mandated payments) we will make additional methods of receiving, managing and paying available. </p>  <p>    All information flows are real-time.   Moving money between various Monoova accounts is also real time.   All money flows in and out of the Engine are as fast as the banking system allows. </p> <p>    The sandbox environment is open to everyone who signs up on our <a href=\"https://developer.monoova.com/user/login\" target=\"_blank\">Developer Portal</a> at no cost.   The sandbox environment allows you to test out the functionality of our API in a consequence free development environment.   Access to the live environment is granted once you have (1) gone through our compliance process and (2) had formal sign-off on your sandbox integration. </p>  <br/><br/> <p> <strong> Note&#58;</strong> Please note we do not accept TLS 1.0 or 1.1 connections</p>  # Getting started >   - Sign on to our <a href=\"https://developer.monoova.com/user/login\" target=\"_blank\">Developer Portal</a> which you already have done   - Get your sandbox API key under **MANAGE > ACCOUNTS** in the Developer Portal   - [Authenticate](#section/Authentication)   - Browse this document to find the functions you need   - Begin experimenting with your first API calls by sending HTTP requests to the endpoints described in this document   - Use the provided examples in the document as guidance  To try out our API you can use a client such as <a href=\"https://www.getpostman.com\" target=\"_blank\"> Postman </a> <br><br> You can download a postman collection of our API by clicking the link below:<br><br> <a href=\"https://god.gw.postman.com/run-collection/21268484-4f72cf91-d973-488a-8c19-74fb369621d2?action=collection%2Ffork&collection-url=entityId%3D21268484-4f72cf91-d973-488a-8c19-74fb369621d2%26entityType%3Dcollection%26workspaceId%3D0a304f49-2e6e-4498-8d43-3b68ee26aee6\" target=\"_blank\">   <img src=\"https://run.pstmn.io/button.svg\" alt=\"Run in Postman\" /> </a>  # Authentication   All RESTful APIs in this document use BASIC Authentication (except those in public/v1) in two scenarios either   - <strong> API KEY </strong>   - <strong> OneShotSecurityToken </strong><br><br>  > **Sandbox Authentication Credentials** <table>   <tr>     <th>Field</th>     <th>Value</th>   </tr>   <tr>     <td>Username</td>     <td>API Key (obtained from the <a href=\"https://developer.monoova.com/user/login\" target=\"_blank\">Developer Portal</a>) </td>   </tr>   <tr>     <td>Password</td>     <td>leave blank when using API key; Monoova will provide password for OneShotSecurityToken</td>   </tr>   <tr>     <td>Base URL</td>     <td>https://api.m-pay.com.au/</td>   </tr> </table> <br>  > **Live Authentication Credentials** This will be provided by Monoova after a technical review. <br>  <table>   <tr>     <th>Field</th>     <th>Value</th>   </tr>   <tr>     <td>Username</td>     <td>API Key (obtained from the Production Portal; Production credentials will be supplied by Monoova) </td>   </tr>   <tr>     <td>Password</td>     <td>leave blank when using API key; Monoova will provide password for OneShotSecurityToken</td>   </tr>   <tr>     <td>Base URL</td>     <td>https://api.mpay.com.au/</td>   </tr> </table> <br>  When using the LIVE Engine, your Sign-In Account is given five (5) attempts to authenticate your credentials.  On the fifth failure your Sign-In Account is locked for one (1) hour.  The returned data will indicate that your account is locked and the time in UTC that the account will be unlocked.  If you require the account to be unlocked on the LIVE system you may contact your Monoova representative and at his or her discretion they will unlock the account. See the API routes in Security to manage Passwords and Tokens. <br><br>  <h3> UserName/Password </h3> Using this scenario, you can configure BASIC Authentication with the following <br> <br> <li> <strong> UserName </strong> - API Key (obtained from the <a href=\"https://developer.monoova.com/user/login\" target=\"_blank\">Developer Portal</a>) Production credentials will be supplied by Monoova when you have demonstrated successful implementation of the API on our Sandbox environment.</li> <li> <strong> Password </strong> - When using your API Key, no password is required.  If the key is compromised, it can be re-rolled via the <a href=\"https://developer.monoova.com/user/login\" target=\"_blank\">Developer Portal</a>. </li> <br>",
+  "author": "Monoova Support <support@monoova.com> (https://www.monoova.com)",
+  "devDependencies": {
+    "@types/jest": "^29.4.0",
+    "@typescript-eslint/eslint-plugin": "^5.52.0",
+    "@typescript-eslint/parser": "^5.52.0",
+    "eslint": "^8.34.0",
+    "jest": "^29.4.3",
+    "ts-jest": "^29.0.5",
+    "tslib": "^2.5.0",
+    "typescript": "^4.9.5"
+  },
+  "dependencies": {
+    "@apimatic/authentication-adapters": "^0.5.0",
+    "@apimatic/axios-client-adapter": "^0.2.0",
+    "@apimatic/core": "^0.10.0",
+    "@apimatic/schema": "^0.7.0",
+    "sdksio-monoova-sdk": "^1.0.0"
+  },
+  "bugs": {
+    "url": "https://www.monoova.com",
+    "email": "support@monoova.com"
+  },
+  "directories": {
+    "doc": "doc"
+  }
+}
